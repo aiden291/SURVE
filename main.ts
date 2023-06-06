@@ -6,6 +6,9 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+info.onScore(1000, function () {
+    tiles.setCurrentTilemap(tilemap`level9`)
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     player2,
@@ -17,7 +20,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 info.onCountdownEnd(function () {
     info.changeLifeBy(5)
     info.startCountdown(20)
-    tiles.setCurrentTilemap(tilemap`level0`)
 })
 info.onScore(100, function () {
     info.changeLifeBy(1)
@@ -34,6 +36,9 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     info.changeLifeBy(-1)
     myEnemy.setPosition(randint(0, scene.screenHeight()), randint(0, scene.screenWidth()))
 })
+info.onScore(102, function () {
+    tiles.setCurrentTilemap(tilemap`level0`)
+})
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     player2,
@@ -48,7 +53,12 @@ info.onLifeZero(function () {
 info.onScore(50, function () {
     info.changeLifeBy(1)
 })
+info.onScore(200, function () {
+    tiles.setCurrentTilemap(tilemap`level7`)
+})
 let player2: Sprite = null
+let nem: Sprite = null
+let enemy1: Sprite = null
 let myEnemy: Sprite = null
 info.startCountdown(20)
 info.setScore(0)
@@ -56,6 +66,8 @@ info.setLife(3)
 tiles.setCurrentTilemap(tilemap`level`)
 myEnemy = sprites.create(assets.image`myImage`, SpriteKind.Enemy)
 myEnemy.setPosition(randint(0, scene.screenHeight()), randint(0, scene.screenWidth()))
+enemy1.setPosition(randint(0, scene.screenHeight()), randint(0, scene.screenWidth()))
+nem.setPosition(randint(0, scene.screenHeight()), randint(0, scene.screenWidth()))
 player2 = sprites.create(assets.image`player`, SpriteKind.Player)
 controller.moveSprite(player2, 100, 100)
 forever(function () {
